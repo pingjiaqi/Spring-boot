@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间是对应接口的包名+类名 -->
+<mapper namespace="com.pjq.dao.PostDao">
+    <select id="getAllPost" resultType="Post">
+        select * from post
+    </select>
+
+    <select id="getAPost" parameterType="int" resultType="Post">
+        select * from post where id=#{id}
+    </select>
+    
+    <select id="getComents" parameterType="int" resultType="Comments">
+        select * from comments where post_id=#{post_id}
+    </select>
+
+    <insert id="insertIntoComments"  >
+        insert into comments(post_id,comment,name) value(#{post_id},#{comment},#{name})
+    </insert>
+
+    <update id="updateCommentsNumber" parameterType="String">
+        update post set=#{number} where id=#{id}
+    </update>
+
+    <insert id="insertIntoPost" parameterType="String">
+        insert into post(theme,content,blogger) value (#{theme},#{content},#{blogger})
+    </insert>
+
+</mapper>
